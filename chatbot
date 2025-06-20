@@ -1,0 +1,43 @@
+import openai
+import tkinter as tk
+
+# Set your OpenAI API key
+client = openai.OpenAI(api_key="inset secrete key here")
+
+def chat_with_gpt(prompt):
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "user", "content": prompt}
+        ]
+    )
+    return response.choices[0].message.content.strip()
+
+def on_submit():
+    user_input = entry.get()
+    if not user_input.strip():
+        result_label.config(text="Please enter a question.")
+        return
+    try:
+        response = chat_with_gpt(user_input)
+        result_label.config(text=f"Chatbot: {response}")
+    except Exception as e:
+        result_label.config(text=f"Error: {str(e)}")
+
+# GUI setup
+window = tk.Tk()
+window.title("Project Black Chat-Bot App")
+
+label = tk.Label(window, text="Ask Me A Question")
+label.pack()
+
+entry = tk.Entry(window, width=50)
+entry.pack()
+
+button = tk.Button(window, text="Get Info", command=on_submit)
+button.pack()
+
+result_label = tk.Label(window, text="", justify=tk.LEFT, wraplength=400)
+result_label.pack()
+
+window.mainloop()
