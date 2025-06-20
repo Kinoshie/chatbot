@@ -1,0 +1,1 @@
+This is the code I used to creat my AI Chatbot with Tkinter. This is free use however the API Key you must create sepratly in order to work. the cost of the key is anywhere from $5-10 dollars can be acess on https://openai.com/api/pricing/
